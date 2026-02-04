@@ -443,6 +443,86 @@ body {
     color: white;
 }
 
+/* Services Section */
+.services-section {
+    padding: 100px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: var(--dark-blue);
+    margin-bottom: 15px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: white;
+    padding: 40px;
+    border-radius: 25px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+    border: 1px solid #eee;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+}
+
+.service-icon {
+    font-size: 3rem;
+    margin-bottom: 25px;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+}
+
+.service-icon.tas { background: rgba(0, 74, 173, 0.1); color: var(--primary-blue); }
+.service-icon.pax { background: rgba(0, 123, 255, 0.1); color: var(--highlight-blue); }
+
+.service-card h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    color: var(--dark-blue);
+}
+
+.service-card p {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.service-card ul {
+    list-style: none;
+}
+
+.service-card li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    color: #444;
+    font-weight: 500;
+}
+
+.service-card li ion-icon {
+    color: #28a745;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
     .navbar { position: relative; background: white; }
