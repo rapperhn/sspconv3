@@ -36,10 +36,20 @@ body {
 }
 
 .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     font-weight: 800;
     font-size: 1.5rem;
     color: var(--dark-blue);
     letter-spacing: 0.5px;
+}
+
+.logo img {
+    height: 50px;
+    width: auto;
+    border-radius: 50%;
+    /* Since the logo is circular */
 }
 
 .nav-links {
