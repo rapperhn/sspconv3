@@ -1,0 +1,11 @@
+{
+    "environment": "production",
+    "deployment_target": "turbify_ftp",
+    "ftp_host": "ftp.turbify.com",
+    "ftp_user": "ssp_admin",
+    "ftp_port": 21,
+    "agents": {
+        "frontend": { "enabled": true, "replicas": 1 },
+        "backend": { "enabled": true, "replicas": 1 }
+    }
+}

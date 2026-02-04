@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSP Consultores - Travel & Assistance</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Ionicons for icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">SSP CONSULTORES</div>
+        <div class="nav-links">
+            <a href="#hero">Inicio</a>
+            <a href="#tas">TAS Assistance</a>
+            <a href="#pax">PAX Assistance</a>
+            <a href="#more">Más <ion-icon name="chevron-down-outline"></ion-icon></a>
+        </div>
+        <div class="nav-icons">
+            <a href="#"><ion-icon name="call"></ion-icon></a>
+            <a href="#"><ion-icon name="mail"></ion-icon></a>
+            <a href="#"><ion-icon name="person-circle"></ion-icon></a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero-content">
+            <h1>Explora el Mundo<br>con Tranquilidad</h1>
+            <p>Obtén el ticket más accesible en cada temporada sin preocupaciones. Ofrecemos asistencia integral TAS y PAX para que solo te enfoques en disfrutar.</p>
+            <button class="btn-primary">Más Detalles</button>
+        </div>
+
+        <!-- Featured Destinations Cards (Visual Only) -->
+        <div class="hero-cards">
+            <div class="card active">
+                <img src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?q=80&w=2070&auto=format&fit=crop" alt="London">
+                <div class="card-info">
+                    <h3>LONDRES</h3>
+                    <div class="price">$400 <span class="sub-text">Ida y vuelta</span></div>
+                    <button class="add-btn"><ion-icon name="add"></ion-icon></button>
+                </div>
+            </div>
+            <div class="card next">
+                <img src="https://images.unsplash.com/photo-1523482580638-01c690ea0ddb?q=80&w=2070&auto=format&fit=crop" alt="Sydney">
+                <div class="card-overlay"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Glassmorphic Search Bar -->
+    <div class="search-container">
+        <div class="search-tabs">
+            <button class="tab active"><ion-icon name="airplane"></ion-icon> VUELOS</button>
+            <button class="tab"><ion-icon name="business"></ion-icon> HOTELES</button>
+            <button class="tab"><ion-icon name="ticket"></ion-icon> OFERTAS ESPECIALES</button>
+        </div>
+        <div class="search-bar">
+            <div class="search-item">
+                <label>Origen</label>
+                <div class="input-group">
+                    <input type="text" value="MÉXICO" readonly>
+                    <ion-icon name="swap-horizontal-outline" class="swap-icon"></ion-icon>
+                </div>
+            </div>
+            <div class="search-item">
+                <label>Destino</label>
+                <input type="text" value="LONDRES">
+            </div>
+            <div class="search-item">
+                <label>Salida</label>
+                <div class="date-display">Vie, 15 Marzo</div>
+            </div>
+            <div class="search-item">
+                <label>Regreso</label>
+                <div class="date-display">Lun, 18 Marzo</div>
+            </div>
+            <div class="search-item">
+                <label>Pasajeros</label>
+                <div class="passengers">
+                    <ion-icon name="person"></ion-icon> 1 Adulto
+                </div>
+            </div>
+            <button class="search-btn"><ion-icon name="search"></ion-icon></button>
+        </div>
+    </div>
+
+    <!-- Orchestrator Agent Widget -->
+    <div id="orchestrator-widget" class="orchestrator-widget closed">
+        <div class="orchestrator-header" onclick="toggleOrchestrator()">
+            <span class="status-dot"></span>
+            Orquestador de Agentes
+            <ion-icon name="chevron-up-outline" id="orch-icon"></ion-icon>
+        </div>
+        <div class="orchestrator-body">
+            <div id="agent-log" class="console-log">
+                <div class="log-entry system">[SYSTEM] Orquestador Iniciado...</div>
+                <div class="log-entry system">[SYSTEM] Esperando input del usuario...</div>
+            </div>
+            <div class="agent-status-container">
+                <div class="agent-status frontend">
+                    <div class="agent-icon"><ion-icon name="desktop-outline"></ion-icon></div>
+                    <span>Frontend Agent</span>
+                    <span class="status-badge" id="fe-status">Idle</span>
+                </div>
+                <div class="agent-status backend">
+                    <div class="agent-icon"><ion-icon name="server-outline"></ion-icon></div>
+                    <span>Backend Agent</span>
+                    <span class="status-badge" id="be-status">Idle</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
