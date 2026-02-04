@@ -1,96 +1,83 @@
 // ssp_consultores/public/script.js
 
 document.addEventListener('DOMContentLoaded', () => {
-    initTabs();
-    initOrchestrator();
+    initPlanSelector();
     initSmoothScroll();
 });
 
-/* --- Tab Switching --- */
-function initTabs() {
+/* --- Plan Selector & Inquiry Logic --- */
+const plansByBrand = {
+    tas: [
+        { id: 'tas-nacional', name: 'TAS Nacional ($20k)', limit: '$20,000' },
+        { id: 'tas-internacional', name: 'TAS Internacional ($60k)', limit: '$60,000' },
+        { id: 'tas-premium', name: 'TAS Premium Gold ($150k)', limit: '$150,000' }
+    ],
+    pax: [
+        { id: 'pax-basic', name: 'Basic Pax ($30k)', limit: '$30,000' },
+        { id: 'pax-classy', name: 'Classy Pax ($60k)', limit: '$60,000' },
+        { id: 'pax-plus', name: 'Classy Plus ($100k)', limit: '$100,000' }
+    ],
+    other: [
+        { id: 'other-local', name: 'Asistencia Local', limit: 'Variable' },
+        { id: 'other-groups', name: 'Planes Corporativos', limit: 'Flexible' }
+    ]
+};
+
+function initPlanSelector() {
     const tabs = document.querySelectorAll('.tab');
+    const planSelector = document.getElementById('plan-selector');
+    const submitBtn = document.getElementById('submit-inquiry');
+    const modal = document.getElementById('contact-modal');
+    const closeModal = document.querySelector('.close-modal');
+    const inquiryForm = document.getElementById('inquiry-form');
+
+    // Tab Switching Logic
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             tabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            // In a real app, this would switch search forms
+
+            const type = tab.getAttribute('data-type');
+            populatePlans(type);
         });
     });
-}
 
-/* --- Orchestrator Simulation --- */
-const LOG_DELAY = 1500;
-const agentLog = document.getElementById('agent-log');
-const feStatus = document.getElementById('fe-status');
-const beStatus = document.getElementById('be-status');
-
-function initOrchestrator() {
-    // Start simulation a few seconds after load
-    setTimeout(() => {
-        logMessage('System', 'Iniciando análisis de entorno...', 'info');
-        // toggleOrchestrator(true); // Comentado para mantenerlo oculto al inicio
-
-        setTimeout(() => spawnAgent('Frontend'), 2000);
-    }, 1000);
-}
-
-function spawnAgent(type) {
-    logMessage('Orchestrator', `Detectada necesidad de ${type}`, 'warn');
-    logMessage('Orchestrator', `Desplegando ${type} Agent...`, 'system');
-
-    if (type === 'Frontend') {
-        updateStatus(feStatus, 'Booting');
-        setTimeout(() => {
-            updateStatus(feStatus, 'Active', true);
-            logMessage('Frontend Agent', 'Renderizando componentes UI...', 'info');
-            logMessage('Frontend Agent', 'Optimización de assets completada.', 'info');
-
-            // Trigger Backend Sequence
-            setTimeout(() => spawnAgent('Backend'), 3000);
-        }, 1500);
-    } else if (type === 'Backend') {
-        updateStatus(beStatus, 'Booting');
-        setTimeout(() => {
-            updateStatus(beStatus, 'Active', true);
-            logMessage('Backend Agent', 'Conectando a Turbify FTP...', 'info');
-            logMessage('Backend Agent', 'Verificando endpoints de TAS/PAX...', 'info');
-            logMessage('Orchestrator', 'Sincronización completa. Sistema listo.', 'system');
-        }, 1500);
+    function populatePlans(type) {
+        planSelector.innerHTML = '';
+        plansByBrand[type].forEach(plan => {
+            const option = document.createElement('option');
+            option.value = plan.id;
+            option.textContent = plan.name;
+            planSelector.appendChild(option);
+        });
     }
-}
 
-function logMessage(source, text, type) {
-    const div = document.createElement('div');
-    div.classList.add('log-entry', type);
+    // Modal Interaction
+    submitBtn.addEventListener('click', () => {
+        const selectedPlanText = planSelector.options[planSelector.selectedIndex].text;
+        document.getElementById('modal-plan-desc').innerHTML = `Interés en plan: <strong>${selectedPlanText}</strong>`;
+        modal.style.display = 'block';
+    });
 
-    const timestamp = new Date().toLocaleTimeString('es-ES', { hour12: false });
-    div.innerHTML = `[${timestamp}] <strong>${source}:</strong> ${text}`;
+    closeModal.onclick = () => modal.style.display = 'none';
+    window.onclick = (event) => {
+        if (event.target == modal) modal.style.display = 'none';
+    };
 
-    agentLog.appendChild(div);
-    agentLog.scrollTop = agentLog.scrollHeight;
-}
+    // Inquiry Submission via WhatsApp
+    inquiryForm.onsubmit = (e) => {
+        e.preventDefault();
+        const name = inquiryForm.querySelector('input[type="text"]').value;
+        const plan = planSelector.options[planSelector.selectedIndex].text;
+        const dest = document.getElementById('destination').value || 'No especificado';
+        const date = document.getElementById('travel-date').value || 'No especificado';
 
-function updateStatus(element, text, working = false) {
-    element.textContent = text;
-    if (working) {
-        element.classList.add('working');
-    } else {
-        element.classList.remove('working');
-    }
-}
+        const message = `Hola SSP Consultores, mi nombre es ${name}. Estoy interesado en el plan *${plan}* para un viaje a *${dest}* el día ${date}. Me gustaría recibir más información.`;
 
-/* --- Orchestrator UI Toggle --- */
-function toggleOrchestrator(forceOpen = false) {
-    const widget = document.getElementById('orchestrator-widget');
-    const icon = document.getElementById('orch-icon');
-
-    if (forceOpen) {
-        widget.classList.remove('closed');
-        icon.name = "chevron-down-outline";
-    } else {
-        widget.classList.toggle('closed');
-        icon.name = widget.classList.contains('closed') ? "chevron-up-outline" : "chevron-down-outline";
-    }
+        const waUrl = `https://wa.me/50499909511?text=${encodeURIComponent(message)}`;
+        window.open(waUrl, '_blank');
+        modal.style.display = 'none';
+    };
 }
 
 /* --- Smooth Scroll --- */
@@ -98,9 +85,10 @@ function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
         });
     });
 }
