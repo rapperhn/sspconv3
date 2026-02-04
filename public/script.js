@@ -52,11 +52,17 @@ function initPlanSelector() {
         });
     }
 
-    // Modal Interaction
-    submitBtn.addEventListener('click', () => {
-        const selectedPlanText = planSelector.options[planSelector.selectedIndex].text;
-        document.getElementById('modal-plan-desc').innerHTML = `Interés en plan: <strong>${selectedPlanText}</strong>`;
-        modal.style.display = 'block';
+    // Link Plan Cards to inquiry system
+    document.querySelectorAll('.plan-card').forEach(card => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', () => {
+            const planName = card.querySelector('h4').textContent;
+            document.getElementById('modal-plan-desc').innerHTML = `Interés en plan: <strong>${planName}</strong>`;
+            modal.style.display = 'block';
+
+            // Optionally scroll to top to show user the widget/modal context
+            // window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     });
 
     closeModal.onclick = () => modal.style.display = 'none';
