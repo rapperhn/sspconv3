@@ -587,8 +587,16 @@ body {
     }
 
     .logo {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         text-align: center;
+        flex-direction: column;
+        /* Stack logo above text on very small screens */
+        gap: 5px;
+    }
+
+    .logo img {
+        height: 40px;
+        /* Smaller logo for mobile */
     }
 
     .hero {
