@@ -564,6 +564,117 @@ body {
     color: #28a745;
 }
 
+/* Planes Section */
+.planes-section {
+    padding: 80px 5%;
+    background: #f0f4f8;
+}
+
+.planes-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.category-block {
+    margin-bottom: 60px;
+}
+
+.category-title {
+    font-size: 2rem;
+    color: var(--dark-blue);
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-left: 5px solid var(--primary-blue);
+    padding-left: 20px;
+}
+
+.planes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.plan-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+    position: relative;
+    border: 1px solid #eee;
+}
+
+.plan-card:hover {
+    transform: translateY(-5px);
+}
+
+.plan-card.featured {
+    border: 2px solid var(--primary-blue);
+    transform: scale(1.05);
+    z-index: 2;
+}
+
+.plan-card h4 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.plan-limit {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-blue);
+    margin-bottom: 15px;
+}
+
+.plan-card p {
+    color: #666;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: var(--primary-blue);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* WhatsApp Floating Button */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: #25d366;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+    z-index: 9999;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.1);
+    background: #128c7e;
+    color: white;
+}
+
+.whatsapp-float ion-icon {
+    font-size: 1.8rem;
+}
+
 /* Responsive Improvements */
 @media (max-width: 900px) {
     body {
@@ -689,5 +800,21 @@ body {
 
     .services-grid {
         grid-template-columns: 1fr;
+    }
+
+    .plan-card.featured {
+        transform: none;
+        margin: 10px 0;
+    }
+
+    .whatsapp-float {
+        padding: 10px;
+        border-radius: 50%;
+        bottom: 20px;
+        left: 20px;
+    }
+
+    .whatsapp-float span {
+        display: none;
     }
 }
