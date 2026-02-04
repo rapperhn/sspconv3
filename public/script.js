@@ -28,7 +28,7 @@ function initOrchestrator() {
     // Start simulation a few seconds after load
     setTimeout(() => {
         logMessage('System', 'Iniciando análisis de entorno...', 'info');
-        toggleOrchestrator(true); // Auto-open for demo
+        // toggleOrchestrator(true); // Comentado para mantenerlo oculto al inicio
 
         setTimeout(() => spawnAgent('Frontend'), 2000);
     }, 1000);
