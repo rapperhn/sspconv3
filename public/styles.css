@@ -564,10 +564,12 @@ body {
     color: #28a745;
 }
 
-/* Planes Section */
+/* Planes Section - Forced Card Styles */
 .planes-section {
-    padding: 80px 5%;
-    background: #f0f4f8;
+    padding: 80px 5% !important;
+    background-color: #f0f4f8 !important;
+    display: block !important;
+    width: 100% !important;
 }
 
 .planes-container {
@@ -577,6 +579,7 @@ body {
 
 .category-block {
     margin-bottom: 60px;
+    clear: both;
 }
 
 .category-title {
@@ -597,13 +600,15 @@ body {
 }
 
 .plan-card {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    background: #ffffff !important;
+    padding: 30px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
     transition: transform 0.3s;
     position: relative;
-    border: 1px solid #eee;
+    border: 1px solid #dee2e6 !important;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
 .plan-card:hover {
@@ -611,27 +616,27 @@ body {
 }
 
 .plan-card.featured {
-    border: 2px solid var(--primary-blue);
-    transform: scale(1.05);
-    z-index: 2;
+    border: 2px solid var(--primary-blue) !important;
+    background: #fff !important;
 }
 
 .plan-card h4 {
     font-size: 1.5rem;
     margin-bottom: 10px;
+    color: var(--dark-blue);
 }
 
 .plan-limit {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
     font-weight: 700;
     color: var(--primary-blue);
     margin-bottom: 15px;
 }
 
 .plan-card p {
-    color: #666;
-    font-size: 0.95rem;
-    line-height: 1.5;
+    color: #495057;
+    font-size: 1rem;
+    line-height: 1.6;
 }
 
 .badge {
@@ -640,10 +645,15 @@ body {
     right: 20px;
     background: var(--primary-blue);
     color: white;
-    padding: 4px 12px;
+    padding: 6px 15px;
     border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.85rem;
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.nav-icons a ion-icon[name="logo-whatsapp"] {
+    color: #25d366;
 }
 
 /* WhatsApp Floating Button */
